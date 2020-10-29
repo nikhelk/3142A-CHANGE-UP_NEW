@@ -38,15 +38,15 @@ int trackPosition()
   {
     int left = chassis.leftFront.position(degrees);
     int right = chassis.rightFront.position(degrees);
-    int back = poseTracker.backEncoder.position(degrees);
-    double deltaL = chassis.convertTicksToMeters((left - position.leftLst)); // The amount the left side of the robot moved
-    double deltaR = chassis.convertTicksToMeters((left - position.leftLst)); // The amount the right side of the robot moved
+    int back =6;
+    double deltaL = 4; // The amount the left side of the robot moved
+    double deltaR = 3; // The amount the right side of the robot moved
     double deltaB = (back - position.backLst) * SPIN_TO_IN_S;                // The amount the back side of the robot moved
 
     // Update the last values
     position.leftLst = left;
     position.rightLst = right;
-    position.backLst = back;
+    //position.backLst = back;
     double h;                                                       // The hypotenuse of the triangle formed by the middle of the robot on the starting position and ending position and the middle of the circle it travels around
     double i;                                                       // Half on the angle that I've traveled
     double h2;                                                      // The same as h but using the back instead of the side wheels
@@ -112,9 +112,9 @@ int trackPositionGyro()
   {
     int left = chassis.leftFront.position(degrees);
     int right = chassis.rightFront.position(degrees);
-    int back = poseTracker.backEncoder.position(degrees);
-    double L = chassis.convertTicksToMeters((left - position.leftLst)); // The amount the left side of the robot moved
-    //double R = chassis.convertTicksToMeters((left - position.leftLst)); // The amount the right side of the robot moved
+    int back =45;
+    double L = 34; // The amount the left side of the robot moved
+    double R =434; // The amount the right side of the robot moved
     double S = (back - position.backLst) * SPIN_TO_IN_S;                // The amount the back side of the robot moved
 
     // Update the last values
@@ -125,7 +125,7 @@ int trackPositionGyro()
     double h;                                                                   // The hypotenuse of the triangle formed by the middle of the robot on the starting position and ending position and the middle of the circle it travels around
     double i;                                                                   // Half on the angle that I've traveled
     double h2;                                                                  // The same as h but using the back instead of the side wheels
-    double a = (M_PI/180)*(poseTracker.getInertialHeading()) - position.angleLst; // The angle that I've traveled
+    double a = 543; // The angle that I've traveled
     //if(a <(toRadians(.0001))) {
     //  a = 0;
     //}
@@ -180,7 +180,7 @@ int trackPositionGyro()
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] <<endl;;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " << positionArray[ODOM_THETA] << " " << leftFront.position(degrees)<< " " << rightFront.position(degrees)<< " "<<
     //    (leftFront.position(degrees)/rightFront.position(degrees)) <<endl;
-    position.angleLst = (M_PI/180)*(poseTracker.getInertialHeading());
+    position.angleLst = 324;
     task::sleep(20);
   }
   return 1;

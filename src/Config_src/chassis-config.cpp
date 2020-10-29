@@ -22,15 +22,6 @@ FourMotorDrive chassis = FourMotorDrive::FourMotorDriveBuilder{}
                           .buildChassis();
 
 
-/**
- * This is the implementation of the poseTracker.
- * The only part that we use is the interial port. We don't use the quad encoders becuase since the encoders were very close together,
- * the turning resolution was bad so we resorted to using the integrated motor encoders in the motors
- */
-Tracking poseTracker({4, 4, 5}, //Tracking wheel distances (left, right, back)
- 2.75, //Tracking wheel radius
- {Tracking::G, Tracking::C, Tracking::A}, //Tracking wheel ports (left, right, back)
- PORT4); //Intertial Sensor port
 
 
 //TEST CHASSIS CONFIG
@@ -78,9 +69,9 @@ void initChassis(void)
 
   setOdomOrigin(0, 0, 0);
 
-  poseTracker.inert.calibrate();
+  //poseTracker.inert.calibrate();
 
-  do {
+  /*do {
 
     BigBrother.Screen.print("Calibrating Inert");
     task::sleep(200);
@@ -90,5 +81,5 @@ void initChassis(void)
 
   
 
-  BigBrother.Screen.print("DONE!");
+  BigBrother.Screen.print("DONE!");*/
 }

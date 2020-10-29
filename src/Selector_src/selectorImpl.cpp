@@ -472,16 +472,6 @@ void makeLoadingScreen() {
   // But the clibration of the IMU is real time amd we can see it actually
   // happening and know when it is done calibarting
 
-  if (confirmButton.buttonList[0].state) { // check if we are in confirm menu
-    bool calibartionDone = false;
-    poseTracker.inert.calibrate();
-    while (poseTracker.inert.isCalibrating()) {
-      Brain.Screen.printAt(100, 150, "Calibrating Sensors...");
-    }
-    calibartionDone = true;
-    if (calibartionDone)
-      Brain.Screen.printAt(330, 150, "DONE");
-  }
 }
 
 int makeDisplay() {

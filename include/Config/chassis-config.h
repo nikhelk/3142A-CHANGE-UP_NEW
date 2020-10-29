@@ -2,7 +2,6 @@
 
 using namespace vex;
 
-extern Tracking poseTracker;
 extern FourMotorDrive testchassis;
 extern FourMotorDrive chassis;
 
