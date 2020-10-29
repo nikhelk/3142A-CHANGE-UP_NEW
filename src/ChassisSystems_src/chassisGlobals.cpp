@@ -1,8 +1,8 @@
 #include "ChassisSystems/chassisGlobals.h"
 #include "Util/vex.h"
 
-FourMotorDrive::FourMotorDrive( const std::array<int32_t, 2> &leftGroup,
-                 const std::array<int32_t, 2> &rightGroup,
+FourMotorDrive::FourMotorDrive( const std::array<int32_t, 2> &frontGroup,
+                 const std::array<int32_t, 2> &backGroup,
                  const gearSetting setting, const double gearRatio,
                  const Dimensions chassisDimensions, const Limits linLimits,
                  const Limits angLimits,
@@ -10,9 +10,9 @@ FourMotorDrive::FourMotorDrive( const std::array<int32_t, 2> &leftGroup,
 
     : m_chassisDimensions(chassisDimensions), m_chassisLinearLimits(linLimits),
     m_chassisAngularLimits(angLimits),
-      leftFront(leftGroup[FRONT], setting),
-      rightFront(rightGroup[FRONT], setting),
-      leftBack(leftGroup[BACK], setting), rightBack(rightGroup[BACK], setting) {
+      leftFront(frontGroup[LEFT], setting),
+      rightFront(frontGroup[RIGHT], setting),
+      leftBack(backGroup[LEFT], setting), rightBack(backGroup[RIGHT], setting) {
 
   enum posPIDType { DISTANCEPID, ANGLEPID, TURNPID };
   int count = 0;
@@ -36,6 +36,16 @@ FourMotorDrive::FourMotorDrive( const std::array<int32_t, 2> &leftGroup,
   this->gearRatio = gearRatio;
   this->setting = setting;
 }
+
+void FourMotorDrive::setDrive(double leftFrontVoltage, double rightFrontVoltage , double leftBackVoltage, double rightBackVoltage) {
+  leftFront.spin(fwd,leftFrontVoltage,volt);
+  rightFront.spin(fwd,rightFrontVoltage,volt);
+  
+  leftBack.spin(fwd,leftBackVoltage,volt);
+  rightBack.spin(fwd,rightBackVoltage,volt);
+}
+
+
 void FourMotorDrive::setReverseSettings(
     const std::array<bool, 2> &LeftReverseVals,
     const std::array<bool, 2> &RightReverseVals) {
@@ -58,6 +68,12 @@ void FourMotorDrive::resetRotation() {
   this->rightFront.resetRotation();
   this->rightBack.resetRotation();
 }
+
+
+
+
+
+
 
 Dimensions::Dimensions( const long double trackWidth,  const long double wheelRadius, const long double ticksToDegrees)
     : m_trackWidth(trackWidth), m_wheelRadius(wheelRadius) {}

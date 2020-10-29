@@ -50,8 +50,8 @@ public:
   gearSetting setting;
 
   enum backOrFront {
-    FRONT,
-    BACK,
+    LEFT,
+    RIGHT,
   };
 
   class FourMotorDriveBuilder;
@@ -94,6 +94,8 @@ public:
 
   /// resets the chassis encoders to 0
   void resetRotation();
+
+  void setDrive(double leftFrontVoltage,double leftBackVoltage, double rightFrontVoltage, double rightBackVoltage);
 
 };
 

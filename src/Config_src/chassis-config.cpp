@@ -61,7 +61,7 @@ bool RemoteControlCodeEnabled = true;
 void initChassis(void)
 {
   //right side of bot reversed and left is not
-  chassis.setReverseSettings( {true, true} , {false, false} );
+  chassis.setReverseSettings( {false, false} , {true, true} );
   // chassis.setReverseSettings({false, false}, {true, true});
   
   chassis.resetPosition();
