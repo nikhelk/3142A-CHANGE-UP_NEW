@@ -9,7 +9,9 @@ extern FourMotorDrive chassis;
 extern encoder testEncoder;
 extern line intakeDetect;
 extern brain Brain;
-
+extern encoder leftEncoder;
+extern encoder rightEncoder;
+extern encoder backEncoder;
 
 /**
  * Used to initialize code/tasks/devices in the chassis

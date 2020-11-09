@@ -22,30 +22,10 @@ FourMotorDrive chassis = FourMotorDrive::FourMotorDriveBuilder{}
                           .buildChassis();
 
 
+encoder leftEncoder = encoder(Brain.ThreeWirePort.A);
+encoder rightEncoder = encoder(Brain.ThreeWirePort.C);
+encoder backEncoder = encoder(Brain.ThreeWirePort.E);
 
-
-//TEST CHASSIS CONFIG
-/* FourMotorDrive testchassis(
-
-    {PORT11, PORT12}, //Left motors (front and back)
-
-    {PORT13, PORT16}, //Right motors (front and back)
-
-    ratio18_1, //motor gear cartridge
-
-    1.66667, //gear ratio
-
-    {15.0_in, 4.0_in}, //Dimensions (trackWidth and wheel size)
-
-    {1.5, 2.2}, //Limits (maxVelocity and maxAcceleration)
-
-    {
-        {0, 0},   //Distance PD (deprecated thanks to feedforwards control)
-        {0, 0},    //Angle PD (deprecated thanks to feedforwards control)
-        {7, 79.8}, //Turn PD (used for inertial sensor based turns)
-    }
-
-); */
 
 line intakeDetect = line(Brain.ThreeWirePort.G);
 encoder testEncoder = encoder(Brain.ThreeWirePort.A);
@@ -66,7 +46,11 @@ void initChassis(void)
   
   chassis.resetPosition();
   chassis.resetRotation();
-
+  
+  leftEncoder.resetRotation();
+  rightEncoder.resetRotation();
+  backEncoder.resetRotation();
+  
   setOdomOrigin(0, 0, 0);
 
   //poseTracker.inert.calibrate();

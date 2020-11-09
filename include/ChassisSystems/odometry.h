@@ -27,8 +27,8 @@ int trackPosition();
 //POSITION TRACKING
 
 extern double test2;
-#define WHEEL_DIAMETER_IN_LR 4.0	// 2.843
-#define WHEEL_DIAMETER_IN_S 0.06985 // 2.843
+#define WHEEL_DIAMETER_IN_LR 2.75	// 2.843
+#define WHEEL_DIAMETER_IN_S 2.75 // 2.843
 
 // The distance between the tracking wheels and the centre of the robot in inches
 #define L_DISTANCE_IN 6.8
@@ -58,9 +58,9 @@ extern double positionArray[3];
 
 /**
  * sets the desired initial odometry pose
- * @param initial X
- * @param initial Y
- * @paran initial Theta
+ * @param x initial X
+ * @param y initial Y
+ * @param a initial Theta
  */
 
 void setOdomOrigin(double x, double y, double a);
