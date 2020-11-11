@@ -8,7 +8,7 @@ using namespace vex;
 
 /// Our FourMotorDrive implementation. Inspiried by OkapiLib (c) Ryan Benesautti WPI
 FourMotorDrive chassis = FourMotorDrive::FourMotorDriveBuilder{}
-                          .withMotors({PORT8, PORT7}, {PORT9, PORT10})
+                          .withMotors({PORT1, PORT2}, {PORT9, PORT10})
                           .withGearSetting(ratio18_1)
                           .withGearRatio(1.6666667)
                           .withDimensions({12.0_in, 3.25_in, 26})

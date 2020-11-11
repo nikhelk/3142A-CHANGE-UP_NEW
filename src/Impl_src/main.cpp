@@ -9,7 +9,7 @@
 
 #include "Impl/api.h"
 #include "Impl/auto_skills.h"
-
+#include "Impl/usercontrol.h"
 #include "Util/vex.h"
 #include "ChassisSystems/posPID.h"
 using namespace vex;
@@ -33,11 +33,12 @@ int main() {
 
   pre_auto();
 
-  BigBrother.ButtonA.pressed( runAutoSkills ); //Run autonomous skills when button "A" is pressed on controller
-
+  //BigBrother.ButtonA.pressed( runAutoSkills ); //Run autonomous skills when button "A" is pressed on controller
+  usercontrol();
 
   while (true) {
+    
 
-    this_thread::sleep_for(10);
+    this_thread::sleep_for(20);
   }
 }
