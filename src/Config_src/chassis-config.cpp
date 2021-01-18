@@ -21,10 +21,10 @@ FourMotorDrive chassis = FourMotorDrive::FourMotorDriveBuilder{}
                                                 }) 
                           .buildChassis();
 
-
-encoder leftEncoder = encoder(Brain.ThreeWirePort.A);
-encoder rightEncoder = encoder(Brain.ThreeWirePort.C);
-encoder backEncoder = encoder(Brain.ThreeWirePort.E);
+triport Expander19Enconder = triport(PORT19);
+encoder leftEncoder = encoder(Expander19Enconder.G);
+encoder rightEncoder = encoder(Brain.ThreeWirePort.A);
+encoder backEncoder = encoder(Expander19Enconder.E);
 
 
 line intakeDetect = line(Brain.ThreeWirePort.G);

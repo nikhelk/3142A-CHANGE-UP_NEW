@@ -14,7 +14,7 @@ extern motor IntakeR;
 extern motor Flywheel;
 extern motor Indexer;
 
-extern triport Expander21;
+extern triport Expander19;
 extern line bottomLine;
 extern line middleLine;
 extern line topLine;

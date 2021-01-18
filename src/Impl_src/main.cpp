@@ -34,11 +34,11 @@ int main() {
   pre_auto();
 
   //BigBrother.ButtonA.pressed( runAutoSkills ); //Run autonomous skills when button "A" is pressed on controller
-  usercontrol();
+ // usercontrol();
 
   while (true) {
     
-
+    LOG(leftEncoder.position(degrees),rightEncoder.position(degrees));
     this_thread::sleep_for(20);
   }
 }

@@ -10,14 +10,16 @@ brain Brain;
 
 controller BigBrother = controller(primary);
 
-motor Flywheel = motor(PORT19, ratio6_1, true);
-motor IntakeL = motor(PORT18, ratio6_1, false);
+motor Flywheel = motor(PORT10, ratio6_1, true);
+motor IntakeL = motor(PORT7, ratio6_1, false);
 motor IntakeR = motor(PORT6, ratio6_1, true);
-motor Indexer = motor(PORT5, ratio6_1, false);
+motor Indexer = motor(PORT11, ratio6_1, false);
 
 
-triport Expander21 = triport(PORT21);
-line bottomLine = line(Expander21.F);
-line middleLine = line(Expander21.G);
-line topLine = line(Expander21.H);
-line outyLine = line(Expander21.E);
+triport Expander19 = triport(PORT19);
+line outyLine = line(Expander19.A);
+line bottomLine = line(Expander19.B);
+line middleLine = line(Expander19.C);
+line topLine = line(Expander19.D);
+
+
