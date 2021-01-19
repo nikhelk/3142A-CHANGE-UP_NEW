@@ -471,6 +471,7 @@ void makeLoadingScreen() {
   // Some of them are time-based and are just for show :)
   // But the clibration of the IMU is real time amd we can see it actually
   // happening and know when it is done calibarting
+  Brain.Screen.drawImageFromFile("logo_test.png", 160, 50);
 
 }
 

@@ -1,7 +1,17 @@
 #include "Impl/usercontrol.h"
 #include "Impl/api.h"
+
+void unlockRobot() {
+  Flywheel.spin(forward,6,volt);
+  task::sleep(300);
+  Flywheel.stop();
+}
 void usercontrol() {
+
+  unlockRobot();
   while(true) {
+
+  //DRIVING
     double throttle = BigBrother.Axis3.value();
     double strafe = BigBrother.Axis4.value();
     double turn = BigBrother.Axis1.value();
@@ -34,7 +44,47 @@ void usercontrol() {
       chassis.rightFront.spin(directionType::fwd, (throttle-strafe-turn), velocityUnits::pct);
     }
 
+  //INTAKES
+    if(BigBrother.ButtonR1.pressing()){
+      IntakeL.spin(fwd,12,volt);
+      IntakeR.spin(fwd,12,volt); 
+      Indexer.spin(fwd,12,volt);                                                                 
+    }
+    else if(BigBrother.ButtonR2.pressing()){
+      IntakeL.spin(reverse,12,volt);
+      IntakeR.spin(reverse,12,volt);
+      Indexer.spin(reverse,12,volt);
+    }
+    else{
+      IntakeL.stop();
+      IntakeR.stop();
+      Indexer.stop();
+    }
+  
+  //INDEXER
+    if(BigBrother.ButtonL1.pressing()){
+      Indexer.spin(fwd,12,volt);
+    }
+    else if(BigBrother.ButtonL2.pressing()){
+      Indexer.spin(reverse,12,volt);
+    }
+    else {
+      Indexer.stop();
+    }
 
-    task::sleep(20);
+
+  //FLYWHEEL
+    if(BigBrother.ButtonA.pressing()) {
+      Flywheel.spin(forward,12,volt);
+    }
+    else if(BigBrother.ButtonB.pressing()) {
+      Flywheel.spin(reverse,12,volt);
+    }
+    else{
+      Flywheel.stop();
+    }
+
+  task::sleep(20);
+  
   }
 }
