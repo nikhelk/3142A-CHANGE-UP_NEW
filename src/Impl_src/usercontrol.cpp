@@ -6,15 +6,24 @@ void unlockRobot() {
   task::sleep(300);
   Flywheel.stop();
 }
+
+double cubic(double input) { 
+
+  //Used to ramp the turning speed, for finer control at lower speeds.
+
+  if (input != 0) {return (pow(input,3))/(100*std::abs(input));}
+  else {return 0;}
+}
+
 void usercontrol() {
 
-  unlockRobot();
+ // unlockRobot();
   while(true) {
 
   //DRIVING
     double throttle = BigBrother.Axis3.value();
     double strafe = BigBrother.Axis4.value();
-    double turn = BigBrother.Axis1.value();
+    double turn = cubic(BigBrother.Axis1.value());
 
     if(std::abs((throttle+strafe+turn)) <5) {
       chassis.leftFront.spin(directionType::fwd, 0, velocityUnits::pct);
@@ -62,6 +71,7 @@ void usercontrol() {
     }
   
   //INDEXER
+    if(BigBrother.ButtonR1.pressing()==false) {
     if(BigBrother.ButtonL1.pressing()){
       Indexer.spin(fwd,12,volt);
     }
@@ -70,6 +80,7 @@ void usercontrol() {
     }
     else {
       Indexer.stop();
+    }
     }
 
 

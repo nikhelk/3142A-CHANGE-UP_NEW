@@ -44,9 +44,9 @@ int main() {
   pre_auto();
 
   //BigBrother.ButtonA.pressed( runAutoSkills ); //Run autonomous skills when button "A" is pressed on controller
-  //usercontrol();
-  task::sleep(10000);
-  autonomous();
+  usercontrol();
+ // task::sleep(10000);
+  //autonomous();
   while (true) {
     
    // LOG(leftEncoder.position(degrees),rightEncoder.position(degrees));
