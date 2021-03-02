@@ -22,15 +22,15 @@ FourMotorDrive chassis = FourMotorDrive::FourMotorDriveBuilder{}
                           .buildChassis();
 
 triport Expander19Enconder = triport(PORT19);
-encoder leftEncoder = encoder(Expander19Enconder.G);
+encoder leftEncoder = encoder(Expander19Enconder.E);
 encoder rightEncoder = encoder(Brain.ThreeWirePort.A);
-encoder backEncoder = encoder(Expander19Enconder.E);
+encoder backEncoder = encoder(Expander19Enconder.G);
 
 
 line intakeDetect = line(Brain.ThreeWirePort.G);
 encoder testEncoder = encoder(Brain.ThreeWirePort.A);
 
-
+inertial inert = inertial(PORT9);
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;

@@ -40,20 +40,20 @@ int trackPosition()
     int right = rightEncoder.position(degrees);
     int back = backEncoder.position(degrees);;
     double deltaL = (left - position.leftLst) * SPIN_TO_IN_LR ; // The amount the left side of the robot moved
-    double deltaR = (right - position.rightLst) * SPIN_TO_IN_LR; // The amount the right side of the robot moved
+    double deltaR = -1* (right - position.rightLst) * SPIN_TO_IN_LR; // The amount the right side of the robot moved (reversed)
     double deltaB = (back - position.backLst) * SPIN_TO_IN_S;                // The amount the back side of the robot moved
 
     // Update the last values
     position.leftLst = left;
     position.rightLst = right;
-    //position.backLst = back;
+    position.backLst = back;
     double h;                                                       // The hypotenuse of the triangle formed by the middle of the robot on the starting position and ending position and the middle of the circle it travels around
     double i;                                                       // Half on the angle that I've traveled
     double h2;                                                      // The same as h but using the back instead of the side wheels
-    double a = (deltaR - deltaL) / (L_DISTANCE_IN + R_DISTANCE_IN); // The angle that I've traveled
+    double a = (deltaL - deltaR) / (L_DISTANCE_IN + R_DISTANCE_IN); // The angle that I've traveled
     if (a)
     {
-      double r = deltaL / a; // The radius of the circle the robot travel's around with the right side of the robot
+      double r = deltaR / a; // The radius of the circle the robot travel's around with the right side of the robot
       i = a / 2.0;
       double sinI = sin(i);
       h = ((r + L_DISTANCE_IN) * sinI) * 2.0;
@@ -63,7 +63,7 @@ int trackPosition()
     }
     else
     {
-      h = deltaL;
+      h = deltaR;
       i = 0;
 
       h2 = deltaB;
@@ -73,22 +73,19 @@ int trackPosition()
     double sinP = sin(p);
 
     // conversion from polar to cartesian
-    position.y += h * sinP;
-    position.x += h * cosP;
+    position.y += h * cosP;
+    position.x += h * sinP;
 
-    position.y += h2 * cosP;
-    position.x += h2 * -sinP;
+    position.x += h2 * cosP;
+    position.y += h2 * -sinP;
 
-    position.a += a;
-    while (position.a > 2 * M_PI)
-      position.a -= 2 * M_PI;
-    while (position.a < -2 * M_PI)
-      position.a += 2 * M_PI;
+    //position.a += a;
+
     //cout << "hi" <<SPIN_TO_IN_LR <<endl;
     positionArray[ODOM_X] = position.x;
     positionArray[ODOM_Y] = position.y;
-    positionArray[ODOM_THETA] = position.a * (180 / M_PI);
-    // std::cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " <<positionArray[ODOM_THETA] <<" " << a<<std::endl;
+    positionArray[ODOM_THETA] = inert.rotation()*M_PI/180;
+    std::cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " <<positionArray[ODOM_THETA] <<" " << a<<std::endl;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " <<positionArray[ODOM_THETA] <<" " << left<< " " <<right<<endl;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] <<endl;;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " << positionArray[ODOM_THETA] << " " << leftFront.position(degrees)<< " " << rightFront.position(degrees)<< " "<<

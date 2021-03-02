@@ -12,7 +12,7 @@ extern brain Brain;
 extern encoder leftEncoder;
 extern encoder rightEncoder;
 extern encoder backEncoder;
-
+extern inertial inert;
 /**
  * Used to initialize code/tasks/devices in the chassis
  */

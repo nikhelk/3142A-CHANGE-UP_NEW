@@ -31,9 +31,9 @@ extern double test2;
 #define WHEEL_DIAMETER_IN_S 2.75 // 2.843
 
 // The distance between the tracking wheels and the centre of the robot in inches
-#define L_DISTANCE_IN 6.8
-#define R_DISTANCE_IN 6.8
-#define S_DISTANCE_IN 7.0
+#define L_DISTANCE_IN 6.1675
+#define R_DISTANCE_IN 6.1675
+#define S_DISTANCE_IN 6.8075
 
 // The number of tick per rotation of the tracking wheel
 #define TICKS_PER_ROTATION 360.0

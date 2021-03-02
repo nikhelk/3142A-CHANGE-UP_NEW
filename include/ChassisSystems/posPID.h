@@ -60,6 +60,8 @@ public:
 
   double calculatePower(double targetPos, double currentPos);
 
+  double calculatePower(double error);
+ 
   /**
    * gets the error of the PD controller
    * @return error of controller
