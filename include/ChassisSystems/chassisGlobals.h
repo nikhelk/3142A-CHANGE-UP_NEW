@@ -72,8 +72,8 @@ public:
    * @param PDGains Controller chassis parameters
    */
 
-  FourMotorDrive(const std::array<int32_t, 2> &leftGroup,
-                 const std::array<int32_t, 2> &rightGroup,
+  FourMotorDrive(const std::array<int32_t, 2> &frontGroup,
+                 const std::array<int32_t, 2> &backGroup,
                  const gearSetting setting, const double gearRatio,
                  const Dimensions chassisDimensions, const Limits linLimits,
                  const Limits angLimits,

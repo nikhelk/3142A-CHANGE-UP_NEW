@@ -53,47 +53,100 @@ void usercontrol() {
       chassis.rightFront.spin(directionType::fwd, (throttle-strafe-turn), velocityUnits::pct);
     }
 
+    if(BigBrother.ButtonL1.pressing()&& !BigBrother.ButtonL2.pressing())
+    {
+      // start intakes
+      IntakeL.spin(fwd,600,rpm);
+      IntakeR.spin(fwd,600,rpm);
+    }
+
+    else if (BigBrother.ButtonL2.pressing()&& !BigBrother.ButtonL1.pressing())
+    {
+      IntakeL.spin(fwd,-600,rpm);
+      IntakeR.spin(fwd,-600,rpm);
+    }
+
+    else
+    {
+      IntakeL.spin(fwd,0,rpm);
+      IntakeR.spin(fwd,0,rpm);
+    }
+
+
+    // indexing controls (R1 indexes the first ball to the shooting bay and the
+    // remaning accordingly)
+
+    // we know the ball is indexed if the line tracker reports <= INDEX_THRESHOLD
+    if (BigBrother.ButtonR1.pressing())
+    {
+      Indexer.spin(fwd,500,rpm);
+    }
+
+    else
+    {
+      Indexer.spin(fwd,0,rpm);
+
+    }
+
+    // shooting controls (R2 fires balls)
+    if (BigBrother.ButtonR2.pressing())
+    {
+      // shoots indexed ball
+      Flywheel.spin(fwd,500,rpm);
+    }
+
+    else
+    {
+      Flywheel.spin(fwd,0,rpm);
+    }
+
+    // discarding controls
+    if (BigBrother.ButtonL1.pressing() && BigBrother.ButtonL2.pressing())
+    {
+      Flywheel.spin(fwd,-300,rpm);
+    }
+
   //INTAKES
-    if(BigBrother.ButtonR1.pressing()){
-      IntakeL.spin(fwd,12,volt);
-      IntakeR.spin(fwd,12,volt); 
-      Indexer.spin(fwd,12,volt);                                                                 
-    }
-    else if(BigBrother.ButtonR2.pressing()){
-      IntakeL.spin(reverse,12,volt);
-      IntakeR.spin(reverse,12,volt);
-      Indexer.spin(reverse,12,volt);
-    }
-    else{
-      IntakeL.stop();
-      IntakeR.stop();
-      Indexer.stop();
-    }
+  //   if(BigBrother.ButtonR1.pressing()){
+  //     IntakeL.spin(fwd,12,volt);
+  //     IntakeR.spin(fwd,12,volt); 
+  //     Indexer.spin(fwd,12,volt);                                                                 
+  //   }
+  //   else if(BigBrother.ButtonR2.pressing()){
+  //     IntakeL.spin(reverse,12,volt);
+  //     IntakeR.spin(reverse,12,volt);
+  //     Indexer.spin(reverse,12,volt);
+  //   }
+  //   else{
+  //     IntakeL.stop();
+  //     IntakeR.stop();
+  //     Indexer.stop();
+  //   }
   
-  //INDEXER
-    if(BigBrother.ButtonR1.pressing()==false) {
-    if(BigBrother.ButtonL1.pressing()){
-      Indexer.spin(fwd,12,volt);
-    }
-    else if(BigBrother.ButtonL2.pressing()){
-      Indexer.spin(reverse,12,volt);
-    }
-    else {
-      Indexer.stop();
-    }
-    }
+  // //INDEXER
+  //   if(BigBrother.ButtonR1.pressing()==false) {
+  //   if(BigBrother.ButtonL1.pressing()){
+  //     Indexer.spin(fwd,12,volt);
+  //   }
+  //   else if(BigBrother.ButtonL2.pressing()){
+  //     Indexer.spin(reverse,12,volt);
+  //   }
+  //   else {
+  //     Indexer.stop();
+  //   }
+  //   }
 
 
-  //FLYWHEEL
-    if(BigBrother.ButtonA.pressing()) {
-      Flywheel.spin(forward,12,volt);
-    }
-    else if(BigBrother.ButtonB.pressing()) {
-      Flywheel.spin(reverse,12,volt);
-    }
-    else{
-      Flywheel.stop();
-    }
+  // //FLYWHEEL
+  //   if(BigBrother.ButtonA.pressing()) {
+  //     Flywheel.spin(forward,12,volt);
+  //   }
+  //   else if(BigBrother.ButtonB.pressing()) {
+  //     Flywheel.spin(reverse,12,volt);
+  //   }
+  //   else{
+  //     Flywheel.stop();
+  //   }
 
   task::sleep(20);
   
