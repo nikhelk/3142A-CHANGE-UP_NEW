@@ -94,5 +94,6 @@ extern int confirmPress;
 
 extern bool allianceBlue;
 extern bool skills;
+extern bool middle_goal_dump;
 
 }

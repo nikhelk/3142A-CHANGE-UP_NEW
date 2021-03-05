@@ -85,7 +85,7 @@ int trackPosition()
     positionArray[ODOM_X] = position.x;
     positionArray[ODOM_Y] = position.y;
     positionArray[ODOM_THETA] = inert.rotation()*M_PI/180;
-    std::cout << "ODOM: " <<  positionArray[ODOM_X] << " " << positionArray[ODOM_Y] << " " <<positionArray[ODOM_THETA]*180/M_PI <<std::endl;
+    //std::cout << "ODOM: " <<  positionArray[ODOM_X] << " " << positionArray[ODOM_Y] << " " <<positionArray[ODOM_THETA]*180/M_PI <<std::endl;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " <<positionArray[ODOM_THETA] <<" " << left<< " " <<right<<endl;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] <<endl;;
     //cout << positionArray[ODOM_X] << "," << positionArray[ODOM_Y] << " " << positionArray[ODOM_THETA] << " " << leftFront.position(degrees)<< " " << rightFront.position(degrees)<< " "<<

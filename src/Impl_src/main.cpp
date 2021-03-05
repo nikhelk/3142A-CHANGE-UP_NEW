@@ -15,6 +15,7 @@
 #include "ChassisSystems/posPID.h"
 using namespace vex;
 
+competition Competition;
 void pre_auto(void) {
 
   initChassis(); //initalizing chassis (see Config_src/chassis-config.cpp)
@@ -40,15 +41,20 @@ void autonomous(void) {
 }
 
 int main() {
+  
 
   pre_auto();
+  task::sleep(200);
 
-  task trackPos(trackPosition);
+  // task trackPos(trackPosition);
   
   //BigBrother.ButtonA.pressed( runAutoSkills ); //Run autonomous skills when button "A" is pressed on controller
-   usercontrol();
+  //chassis.moveToPointAndAngle(0, 5, 0);
  // task::sleep(10000);
+ Competition.autonomous( autonomous );
+ Competition.drivercontrol( usercontrol );
   //autonomous();
+  
   while (true) {
     //printPosition();
     

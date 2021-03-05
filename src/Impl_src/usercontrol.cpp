@@ -3,7 +3,7 @@
 
 void unlockRobot() {
   Flywheel.spin(forward,6,volt);
-  task::sleep(300);
+  task::sleep(1000);
   Flywheel.stop();
 }
 
@@ -17,7 +17,7 @@ double cubic(double input) {
 
 void usercontrol() {
 
- // unlockRobot();
+  unlockRobot();
   while(true) {
 
   //DRIVING
@@ -53,19 +53,21 @@ void usercontrol() {
       chassis.rightFront.spin(directionType::fwd, (throttle-strafe-turn), velocityUnits::pct);
     }
 
+    // intake
     if(BigBrother.ButtonL1.pressing()&& !BigBrother.ButtonL2.pressing())
     {
-      // start intakes
       IntakeL.spin(fwd,600,rpm);
       IntakeR.spin(fwd,600,rpm);
     }
 
+    // outtake
     else if (BigBrother.ButtonL2.pressing()&& !BigBrother.ButtonL1.pressing())
     {
       IntakeL.spin(fwd,-600,rpm);
       IntakeR.spin(fwd,-600,rpm);
     }
 
+    // stop intakes
     else
     {
       IntakeL.spin(fwd,0,rpm);
@@ -82,6 +84,10 @@ void usercontrol() {
       Indexer.spin(fwd,500,rpm);
     }
 
+    else if(BigBrother.ButtonB.pressing()) {
+      Indexer.spin(fwd,-300,rpm);
+    }
+
     else
     {
       Indexer.spin(fwd,0,rpm);
@@ -94,6 +100,11 @@ void usercontrol() {
       // shoots indexed ball
       Flywheel.spin(fwd,500,rpm);
     }
+    
+    else if (BigBrother.ButtonL1.pressing() && BigBrother.ButtonL2.pressing())
+    {
+      Flywheel.spin(fwd,-300,rpm);
+    }
 
     else
     {
@@ -101,10 +112,8 @@ void usercontrol() {
     }
 
     // discarding controls
-    if (BigBrother.ButtonL1.pressing() && BigBrother.ButtonL2.pressing())
-    {
-      Flywheel.spin(fwd,-300,rpm);
-    }
+
+
 
   //INTAKES
   //   if(BigBrother.ButtonR1.pressing()){

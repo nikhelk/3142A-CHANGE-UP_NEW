@@ -97,7 +97,7 @@ public:
 
   void setDrive(double leftFrontVoltage,double leftBackVoltage, double rightFrontVoltage, double rightBackVoltage);
 
-  void moveToPointAndAngle(double xTarget, double yTarget, double angleTarget,double timeAllocatted);
+  void moveToPointAndAngle(double xTarget, double yTarget, double angleTarget);
 };
 
 

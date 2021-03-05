@@ -55,15 +55,15 @@ void initChassis(void)
 
   //poseTracker.inert.calibrate();
 
-  /*do {
+  do {
 
     BigBrother.Screen.print("Calibrating Inert");
     task::sleep(200);
 
     BigBrother.Screen.clearLine(3);
-  } while((poseTracker.inert.isCalibrating()) );
+  } while((inert.isCalibrating()) );
 
   
 
-  BigBrother.Screen.print("DONE!");*/
+  BigBrother.Screen.print("DONE!");
 }

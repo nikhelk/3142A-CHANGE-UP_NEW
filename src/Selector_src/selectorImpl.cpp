@@ -30,7 +30,7 @@ ButtonGroupMaker tabButtons({
 
 ButtonGroupMaker autonButtons({
     {30, 40, 60, 60, false, 0xE00000, 0x0000E0, "Ally"},
-    {120, 40, 60, 60, false, 0x303030, 0xD0D0D0, "Start"},
+    {120, 40, 60, 60, false, 0x303030, 0xD0D0D0, "Middle Goal"},
     {210, 40, 60, 60, false, 0x303030, 0xD0D0D0, "Skills"},
 });
 
@@ -299,7 +299,7 @@ void userTouchCallbackPressed() {
 // NOTE: This is not a final list of all variables
 bool allianceBlue = false;
 bool skills = false;
-
+bool middle_goal_dump = false;
 void userTouchCallbackReleased() {
   int index;
   int xpos = Brain.Screen.xPosition();
@@ -329,6 +329,7 @@ void userTouchCallbackReleased() {
 
       // store variables made in selector
       allianceBlue = autonButtons.buttonList[0].state;
+      middle_goal_dump = autonButtons.buttonList[1].state;
       skills = autonButtons.buttonList[2].state;
 
       Brain.Screen.clearScreen();
